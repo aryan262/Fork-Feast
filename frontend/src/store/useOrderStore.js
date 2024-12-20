@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import axios from 'axios';
 import {createJSONStorage, persist} from 'zustand/middleware'
 const API_ENDPOINT = 'https://forkfeast.vercel.app/api/order'
 axios.defaults.withCredentials = true;
