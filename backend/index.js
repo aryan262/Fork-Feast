@@ -12,7 +12,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000
 
-app.use(bodyParser.json({limit:'10mb'}));
+// app.use(bodyParser.json({limit:'10mb'}));
 app.use(express.urlencoded({extended:true, limit:'10mb'}));
 app.use(express.json());
 app.use(cookieParser());
@@ -22,7 +22,7 @@ app.use("/api/user", userRoutes)
 app.use("/api/restaurant", restaurantRoutes)
 app.use("/api/menu", menuRoutes)
 app.use("/api/order", orderRoutes)
-app.get("/", (req, res)=>{
+app.use("/", (req, res)=>{
     res.send("Hello from server");
 })
 
