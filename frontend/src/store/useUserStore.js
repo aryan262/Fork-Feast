@@ -24,7 +24,7 @@ export const useUserStore = create()(persist((set)=>({
                 set({loading:false, user:response.data.user, isAuthenticated:true})
             }
         } catch (error) {
-            toast.error(error.response.message)
+            toast.error(error.response.data.message)
             set({loading:false})
         }
     },
@@ -42,7 +42,7 @@ export const useUserStore = create()(persist((set)=>({
                 set({loading:false, user:response.data.user, isAuthenticated:true})
             }
         } catch (error) {
-            toast.error(error.response.message)
+            toast.error(error.response.data.message)
             set({loading:false})
         }
     },
@@ -75,7 +75,7 @@ export const useUserStore = create()(persist((set)=>({
                 toast.success(response.data.message)
             }
         } catch (error) {
-            toast.error(error.response)
+            // toast.error(error.response)
             set({isAuthenticated:true, isCheckingAuth:false})
         }
     },
@@ -117,7 +117,7 @@ export const useUserStore = create()(persist((set)=>({
                 set({loading:false})
             }
         } catch (error) {
-            toast.error(error.response.message)
+            toast.error(error.response.data.message)
             set({loading:false})
         }
     },
