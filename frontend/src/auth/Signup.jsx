@@ -32,7 +32,7 @@ function Signup() {
         }
         try {
             await signup(input);
-            navigate("/verifyEmail");
+            navigate("/verifyemail");
         } catch (error) {
             toast.error(error.message);
             console.log(error);
