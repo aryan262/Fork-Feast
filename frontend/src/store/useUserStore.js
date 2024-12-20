@@ -65,23 +65,11 @@ export const useUserStore = create()(persist((set)=>({
             toast.error(error.response.data.message)
         }
     },
-    checkAuthentication:async()=>{
-        // try {
-        //     set({ isCheckingAuth: true });
-        //     const response = await axios.get(`${API_ENDPOINT}/checkauth`);
-        //     if (response.data.success) {
-        //       set({ user: response.data.user, isAuthenticated: true, isCheckingAuth: false });
-        //       console.log("Authentication successful:", response.data.user);
-        //     }
-        //   } catch (error) {
-        //     console.error("Authentication check failed:", error.response);
-        //     set({ isAuthenticated: false, isCheckingAuth: false });
-        //   }        
+    checkAuthentication:async()=>{       
         try {
             set({isCheckingAuth:true});
             const response = await axios.get(`${API_ENDPOINT}/checkauth`);
             if(response.data.success){
-                // console.log(response.data);
                 set({user:response.data.user, isAuthenticated:true, isCheckingAuth:false})
                 toast.success(response.data.message)
             }

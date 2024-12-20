@@ -13,7 +13,8 @@ function Login() {
         password:""
     })
     const [errors, setErrors] = useState({});
-    const {loading, login} = useUserStore();
+    const {login, loading} = useUserStore();
+    // const loading=false;
     const navigate = useNavigate();
     const changeEventHandler = (event)=>{
         const {name, value} =  event.target;
@@ -23,17 +24,17 @@ function Login() {
         event.preventDefault();
         const result = userLoginSchema.safeParse(input);
         if (!result.success) {
-        const fieldErrors = result.error.formErrors.fieldErrors;
-        setErrors(fieldErrors);
-        return;
-    }
-    await login(input);
-    try {
-      await login(input);
-      navigate("/");
-    } catch (error) {
-        console.log(error);
-    }
+            const fieldErrors = result.error.formErrors.fieldErrors;
+            setErrors(fieldErrors);
+            return;
+        }
+    // await login(input);
+        try {
+            await login(input);
+            navigate("/");
+        } catch (error) {
+            console.log(error);
+        }
     }
     // const loading = false;
   return (

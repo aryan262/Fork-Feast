@@ -6,6 +6,7 @@ import { useUserStore } from '@/store/useUserStore'
 import { Contact, Loader2, LockKeyhole, Mail, User } from 'lucide-react'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
 
 
 function Signup() {
@@ -17,6 +18,8 @@ function Signup() {
     })
     const [errors, setErrors] = useState({});
     const {signup, loading} = useUserStore(); 
+    // const loading=false;
+
     const navigate = useNavigate()
     const changeEventHandler = (event)=>{
         const {name, value} =  event.target;
