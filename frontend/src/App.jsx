@@ -22,7 +22,10 @@ import { useThemeStore } from './store/useThemeStore'
 
 
 const ProtectedRoutes = ({children})=>{
-  const {isAuthenticated, user} = useUserStore();
+  const {isAuthenticated, user, isCheckingAuth} = useUserStore();
+  if (isCheckingAuth) {
+    return <Loading />;
+  }
   if(!isAuthenticated){
     return <Navigate to="/login" replace />
   }
