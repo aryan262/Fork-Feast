@@ -26,6 +26,9 @@ const ProtectedRoutes = ({children})=>{
   if(!isAuthenticated){
     return <Navigate to="/login" replace />
   }
+  // if(!isAuthenticated && !user?.isVerified){
+  //   return <Navigate to="/" replace />
+  // }
   if(!user?.isVerified){
     return <Navigate to="/verifyEmail" replace />
   }
@@ -42,10 +45,10 @@ const AuthenticatedUser = ({children})=>{
 
 const AdminRoute = ({children})=>{
   const {user, isAuthenticated} = useUserStore();
-  if(isAuthenticated){
+  if(!isAuthenticated){
     return <Navigate to="/login" replace />
   }
-  if(user?.admin){
+  if(!user?.admin){
     return <Navigate to="/" replace />
   }
   return children
