@@ -2,7 +2,7 @@ import axios from 'axios'
 import { toast } from 'sonner';
 import { create } from 'zustand'
 import {createJSONStorage, persist} from 'zustand/middleware'
-const API_ENDPOINT = 'http://localhost:3000/api/restaurant'
+const API_ENDPOINT = 'https://forkfeast.vercel.app/api/restaurant'
 axios.defaults.withCredentials = true;
 export const useRestaurantStore = create()(persist((set, get)=>({
     loading:false,

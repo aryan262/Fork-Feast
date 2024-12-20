@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import {createJSONStorage, persist} from 'zustand/middleware'
 import { useRestaurantStore } from './useRestaurantStore';
-const API_ENDPOINT = 'http://localhost:3000/api/menu'
+const API_ENDPOINT = 'https://forkfeast.vercel.app/api/menu'
 export const useMenuStore = create()(persist((set)=>({
     loading:false,
     menu:null,

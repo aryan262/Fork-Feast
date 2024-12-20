@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import {createJSONStorage, persist} from 'zustand/middleware'
-const API_ENDPOINT = 'http://localhost:3000/api/order'
+const API_ENDPOINT = 'https://forkfeast.vercel.app/api/order'
 axios.defaults.withCredentials = true;
 export const useOrderStore = create()(persist((set)=>({
     loading:false,

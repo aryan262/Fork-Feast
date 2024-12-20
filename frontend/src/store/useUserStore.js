@@ -3,7 +3,7 @@ import { toast } from 'sonner';
 import { create } from 'zustand'
 import {createJSONStorage, persist} from 'zustand/middleware'
 
-const API_ENDPOINT = 'http://localhost:3000/api/user'
+const API_ENDPOINT = 'https://forkfeast.vercel.app/api/user'
 axios.defaults.withCredentials = true;
 export const useUserStore = create()(persist((set)=>({
     user:null,
