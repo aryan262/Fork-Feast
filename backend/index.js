@@ -22,6 +22,9 @@ app.use("/api/user", userRoutes)
 app.use("/api/restaurant", restaurantRoutes)
 app.use("/api/menu", menuRoutes)
 app.use("/api/order", orderRoutes)
+app.use("/", ()=>{
+    res.json("Hello");
+})
 
 app.listen(port, ()=>{
     connectDB()
