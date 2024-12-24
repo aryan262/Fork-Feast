@@ -26,7 +26,7 @@ export const signup = async(req, res)=>{
         return res.status(201).json({success:true,message: "Account created successfully", user:user.select("-password")});
     } catch (error) {
         console.log(error.message);
-        return res.status(500).json({message:"Internal Server Error"})
+        return res.status(500).json({message:error})
     }
 }
 

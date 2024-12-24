@@ -30,7 +30,7 @@ export const editMenu = async(req, res)=>{
         const {id} = req.params;
         const {name, description, price} = req.body;
         const file = req.file;
-        const menu = await Menu.findByIdAndUpdate(id);
+        const menu = await Menu.findById(id);
         if(!menu){
             return res.status(404).json({success:false, message:"Menu not Found!"})
         }
