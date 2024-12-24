@@ -35,7 +35,7 @@ function Signup() {
         }
         try {
             await signup(input);
-            navigate("/verifyemail");
+            navigate("/verify-email");
         } catch (error) {
             toast.error(error.message);
             console.log(error);

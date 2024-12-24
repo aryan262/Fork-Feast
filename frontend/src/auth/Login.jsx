@@ -69,7 +69,7 @@ function Login() {
                     )
                 }
                 <div className="mt-4 text-center"> 
-                    <Link to="/forgot" className='mt-8 text-blue-800 hover:underline'>Forgot Password</Link>
+                    <Link to="/forgot-password" className='mt-8 text-blue-800 hover:underline'>Forgot Password</Link>
                 </div>
                 
             </div>
