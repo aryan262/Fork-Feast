@@ -47,7 +47,7 @@ export const login = async(req, res)=>{
         return res.status(200).json({success:true,message: `Welcome back ${user.fullName}`, user:user.select("-password")});
     } catch (error) {
         console.log(error.message);
-        return res.status(500).json({message:"Internal Server Error"})
+        return res.status(500).json({message:error})
     }
 }
 
