@@ -21,22 +21,17 @@ import Loading from '@/components/Loading'
 import { useThemeStore } from './store/useThemeStore'
 
 
-const ProtectedRoutes = ({children})=>{
-  const {isAuthenticated, user, isCheckingAuth} = useUserStore();
-  if (isCheckingAuth) {
-    return <Loading />;
+const ProtectedRoutes = ({ children }) => {
+  const { isAuthenticated, user } = useUserStore();
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
   }
-  if(!isAuthenticated){
-    return <Navigate to="/login" replace />
+
+  if (!user?.isVerified) {
+    return <Navigate to="/verify-email" replace />;
   }
-  // if(!isAuthenticated && !user?.isVerified){
-  //   return <Navigate to="/" replace />
-  // }
-  if(!user?.isVerified){
-    return <Navigate to="/verifyemail" replace />
-  }
-  return children
-}
+  return children;
+};
 
 const AuthenticatedUser = ({children})=>{
   const {isAuthenticated, user} = useUserStore();
