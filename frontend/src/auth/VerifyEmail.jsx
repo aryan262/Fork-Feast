@@ -32,7 +32,7 @@ function VerifyEmail() {
         const verificationcode = otp.join("");
         try {
             await verifyEmail(verificationcode);
-            navigate("/");
+            navigate("/login");
         } catch (error) {
             console.log(error);
         }
