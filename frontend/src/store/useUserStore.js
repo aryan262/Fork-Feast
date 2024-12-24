@@ -48,8 +48,8 @@ export const useUserStore = create()(persist((set)=>({
     },
     verifyEmail:async(verificationCode)=>{
         try {
-            set({isCheckingAuth:true});
-            const response = await axios.post(`${API_ENDPOINT}/verifyemail`, {verificationCode},{
+            set({loading:true});
+            const response = await axios.post(`${API_ENDPOINT}/verify-email`, {verificationCode},{
                 headers:{
                     'Content-Type':'application/json'
                 }
@@ -57,18 +57,18 @@ export const useUserStore = create()(persist((set)=>({
             if(response.data.success){
                 // console.log(response.data);
                 toast.success(response.data.message)
-                set({loading:false, user:response.data.user, isAuthenticated:true, isCheckingAuth:false})
+                set({loading:false})
             }
             // return response.data;
         } catch (error) {
-            set({loading:false, isAuthenticated:false, isCheckingAuth:false})
             toast.error(error.response.data.message)
+            set({loading:false})
         }
     },
     checkAuthentication:async()=>{       
         try {
             set({isCheckingAuth:true});
-            const response = await axios.get(`${API_ENDPOINT}/checkauth`);
+            const response = await axios.get(`${API_ENDPOINT}/check-auth`);
             if(response.data.success){
                 set({user:response.data.user, isAuthenticated:true, isCheckingAuth:false})
                 toast.success(response.data.message)
@@ -95,7 +95,7 @@ export const useUserStore = create()(persist((set)=>({
     forgotPassword:async()=>{
         try {
             set({loading:true});
-            const response = await axios.post(`${API_ENDPOINT}/forgotPassword`, {email});
+            const response = await axios.post(`${API_ENDPOINT}/forgot-password`, {email});
             if(response.data.success){
                 // console.log(response.data);
                 toast.success(response.data.message)
@@ -109,7 +109,7 @@ export const useUserStore = create()(persist((set)=>({
     resetPassword:async(token, newPassword)=>{
         try {
             set({loading:true});
-            const response = await axios.post(`${API_ENDPOINT}/resetPassword/${token}`, {newPassword});
+            const response = await axios.post(`${API_ENDPOINT}/reset-password/${token}`, {newPassword});
             if(response.data.success){
                 // console.log(response.data);
                 toast.success(response.data.message)
@@ -138,6 +138,6 @@ export const useUserStore = create()(persist((set)=>({
     },
 }),
 {
-    name:'userName',
+    name:'user-name',
     storage:createJSONStorage(()=>localStorage)
 }))

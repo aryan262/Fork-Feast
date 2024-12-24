@@ -56,14 +56,16 @@ function Restaurant() {
   useEffect(()=>{
     const fetchRestaurant = async()=>{
       await getRestaurant();
-      setInput({
-        restaurantName:restaurant.restaurantName || "",
-        city: restaurant.city||"",
-        country:restaurant.country||"",
-        deliveryTime:restaurant.deliveryTime||0,
-        cuisines:restaurant.cuisines? restaurant.cuisines.map((cuisine)=>cuisine) :[],
-        imageFile:undefined
-      })
+      if(restaurant){
+        setInput({
+          restaurantName:restaurant.restaurantName || "",
+          city: restaurant.city||"",
+          country:restaurant.country||"",
+          deliveryTime:restaurant.deliveryTime||0,
+          cuisines:restaurant.cuisines? restaurant.cuisines.map((cuisine)=>cuisine) :[],
+          imageFile:undefined
+        })
+      }
     }
     fetchRestaurant();
   },[])
@@ -91,18 +93,18 @@ function Restaurant() {
                 {errors&& <span className='text-xs text-red-600 font-medium'>{errors.country}</span>}
               </div>
               <div>
-                <Label>Estimated Delivery Time (in minutes)</Label>
+                <Label>Delivery Time</Label>
                 <Input type="number" name="deliveryTime" value={input.deliveryTime} onChange={changeEventHandler} placeholder="Enter your delivery time" />
                 {errors&& <span className='text-xs text-red-600 font-medium'>{errors.deliveryTime}</span>}
               </div>
               <div>
                 <Label>Cuisines</Label>
-                <Input type="text" name="cuisines" value={input.cuisines} onChange={(event)=>setInput({...input, cuisines:event.target.value.split(", ")})} placeholder="e.g., Chinese, Italian" />
+                <Input type="text" name="cuisines" value={input.cuisines} onChange={(event)=>setInput({...input, cuisines:event.target.value.split(",")})} placeholder="e.g., Chinese, Italian" />
                 {errors&& <span className='text-xs text-red-600 font-medium'>{errors.cuisines}</span>}
               </div>
               <div>
                 <Label>Upload Restaurant Image</Label>
-                <Input type="file" name="imageFile  " onChange={(event)=>setInput({...input, imageFile:event.target.files?.[0] || undefined})} accept="image/*" />
+                <Input type="file" name="imageFile" onChange={(event)=>setInput({...input, imageFile:event.target.files?.[0] || undefined})} accept="image/*" />
                 {errors&& <span className='text-xs text-red-600 font-medium'>{errors.imageFile?.name}</span>}
               </div>
             </div>

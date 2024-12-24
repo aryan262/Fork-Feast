@@ -7,7 +7,7 @@ export const useCartStore = create()(persist((set)=>({
             const existingItem = state.cart.find((cartItem)=>cartItem._id===item._id);
             if(existingItem){
                 return {
-                    cart:state.cart.map((cartItem)=>cartItem._id===item._id?{...cartItem, quantity:cartItem.quantity+1}:cartItem)
+                    cart:state?.cart.map((cartItem)=>cartItem._id===item._id?{...cartItem, quantity:cartItem.quantity+1}:cartItem)
                 }
             }
             else{
@@ -37,7 +37,7 @@ export const useCartStore = create()(persist((set)=>({
     }
 }),
 {
-    name:'cartName',
+    name:'cart-name',
     storage:createJSONStorage(()=>localStorage)
 }
 ))

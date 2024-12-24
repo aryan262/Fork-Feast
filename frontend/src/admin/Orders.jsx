@@ -4,12 +4,12 @@ import { useRestaurantStore } from '@/store/useRestaurantStore'
 import React, { useEffect } from 'react'
 
 function Orders() {
-    const {getrestaurantOrders, updateRestaurantOrder, restaurantOrder} = useRestaurantStore();
+    const {getRestaurantOrders, updateRestaurantOrder, restaurantOrder} = useRestaurantStore();
     const handleStatusChange = async(id, status)=>{
         await updateRestaurantOrder(id, status);
     }
     useEffect(()=>{
-        getrestaurantOrders();
+        getRestaurantOrders();
     },[])
   return (
     <div className='max-w-6xl mx-auto py-10 px-6'>

@@ -1,7 +1,7 @@
 import express from "express"
 import dotenv from "dotenv"
 import connectDB from "./config/db.js";
-import bodyParser from 'body-parser'
+// import bodyParser from 'body-parser'
 import cookieParser from "cookie-parser";
 import cors from 'cors'
 import userRoutes from './routes/user.routes.js'

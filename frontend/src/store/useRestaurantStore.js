@@ -36,13 +36,13 @@ export const useRestaurantStore = create()(persist((set, get)=>({
             if(response.data.success){
                 // console.log(response.data);
                 set({loading:false, restaurant:response.data.restaurant})
-                toast.success(response.data.message)
+                // toast.success(response.data.message)
             }
         } catch (error) {
             if(error.response.status===404){
                 set({restaurant:null})
             }
-            toast.error(error.response.data.message)
+            // toast.error(error.response.data.message)
             set({loading:false})
         }
     },
@@ -60,7 +60,7 @@ export const useRestaurantStore = create()(persist((set, get)=>({
                 set({loading:false})
             }
         } catch (error) {
-            toast.error(error.response.data.message)
+            // toast.error(error.response.data.message)
             set({loading:false})
         }
     },
@@ -75,20 +75,20 @@ export const useRestaurantStore = create()(persist((set, get)=>({
             if(response.data.success){
                 console.log(response.data);
                 set({loading:false, searchedRestaurant:response.data})
-                toast.success(response.data.message)
+                toast.success(response.data)
             }
         } catch (error) {
             toast.error(error.response.data.message)
             set({loading:false})
         }
     },
-    addMenutoRestaurant:(menu)=>{
+    addMenuToRestaurant:(menu)=>{
         set((state)=>({
             restaurant:state.restaurant ? {...state.restaurant, menus:[...state.restaurant.menus, menu]}:null,
 
         }))
     },
-    updateMenutoRestaurant:(updatedMenu)=>{
+    updateMenuToRestaurant:(updatedMenu)=>{
         set((state)=>{
             if(state.restaurant){
                 const updatedMenuList= state.restaurant.menus.map((menu)=>menu._id===updatedMenu._id?updatedMenu:menu);
@@ -118,7 +118,7 @@ export const useRestaurantStore = create()(persist((set, get)=>({
             set({loading:false})
         }
     },
-    getrestaurantOrders:async()=>{
+    getRestaurantOrders:async()=>{
         try {
             const response = await axios.get(`${API_ENDPOINT}/orders`)
             if(response.data.success){
@@ -150,7 +150,7 @@ export const useRestaurantStore = create()(persist((set, get)=>({
     }
 }),
 {
-    name:'restaurantName',
+    name:'restaurant-name',
     storage:createJSONStorage(()=>localStorage)
 }
 ))

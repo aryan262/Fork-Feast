@@ -10,20 +10,7 @@ import { menuSchema } from '@/schema/menuSchema';
 import { useMenuStore } from '@/store/useMenuStore';
 import { useRestaurantStore } from '@/store/useRestaurantStore';
 
-const menus = [
-    {
-        name:"Biryani",
-        description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
-        price:80,
-        image: Image
-    },
-    {
-        name:"Biryani",
-        description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
-        price:80,
-        image: Image
-    },
-]
+
 function AddMenu() {
     const [input, setInput] = useState({
         name:"",
@@ -58,7 +45,7 @@ function AddMenu() {
             formData.append("name", input.name);
             formData.append("description", input.description);
             formData.append("price", input.price.toString());
-            if(input.imageFile){
+            if(input.image){
                 formData.append("image", input.image);
             }
             await createMenu(formData)
@@ -121,7 +108,7 @@ function AddMenu() {
             </Dialog>
         </div>
         {
-            restaurant.menus.map((menu, idx)=>(
+            restaurant?.menus.map((menu, idx)=>(
                 <div key={idx} className='mt-6 space-y-4'>
                     <div className='flex flex-col md:flex-row md:items-center md:space-x-4 md:p-4 p-2 shadow-md rounded-lg border'>
                         <img src={menu.image} alt='' className='md:h-24 md:w-24 h-16 w-full object-cover rounded-lg'/>

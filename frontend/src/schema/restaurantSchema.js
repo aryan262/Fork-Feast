@@ -5,5 +5,5 @@ export const restaurantFormSchema = z.object({
     country:z.string().nonempty({message:"Country is required"}),
     deliveryTime:z.number().min(0, {message:"Delivery Time can't be negative"}),
     cuisines:z.array(z.string()),
-    imageFile:z.instanceof(File).optional().refine((file)=>file?.size!={message:"Restaurant image is required"}),
+    imageFile:z.instanceof(File).optional().refine((file)=>file?.size!==0, {message:"Restaurant image is required"}),
 })

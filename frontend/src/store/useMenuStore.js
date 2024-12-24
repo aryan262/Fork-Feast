@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import {createJSONStorage, persist} from 'zustand/middleware'
 import { useRestaurantStore } from './useRestaurantStore';
 import axios from 'axios';
+import { toast } from 'sonner';
 const API_ENDPOINT = 'https://forkfeastbackend.vercel.app/api/menu'
 axios.defaults.withCredentials = true;
 export const useMenuStore = create()(persist((set)=>({
@@ -20,7 +21,7 @@ export const useMenuStore = create()(persist((set)=>({
                 toast.success(response.data.message)
                 set({loading:false, menu:response.data.menu})
             }
-            useRestaurantStore.getState().addMenutoRestaurant(response.data.menu);
+            useRestaurantStore.getState().addMenuToRestaurant(response.data.menu);
         } catch (error) {
             toast.error(error.response.data.message)
             set({loading:false})
@@ -30,7 +31,7 @@ export const useMenuStore = create()(persist((set)=>({
     editMenu:async(menuId, formData)=>{
         try {
             set({loading:true});
-            const response = await axios.put(`${API_ENDPOINT}/${menu}`, formData, {
+            const response = await axios.put(`${API_ENDPOINT}/${menuId}`, formData, {
                 headers:{
                     'Content-Type':'multipart/form-data'
                 }
@@ -40,7 +41,7 @@ export const useMenuStore = create()(persist((set)=>({
                 toast.success(response.data.message)
                 set({loading:false, menu:response.data.menu})
             }
-            useRestaurantStore.getState().updateMenutoRestaurant(response.data.menu);
+            useRestaurantStore.getState().updateMenuToRestaurant(response.data.menu);
         } catch (error) {
             toast.error(error.response.data.message)
             set({loading:false})
@@ -48,7 +49,7 @@ export const useMenuStore = create()(persist((set)=>({
     }
 }),
 {
-    name:'menuName',
+    name:'menu-name',
     storage:createJSONStorage(()=>localStorage)
 }
 ))

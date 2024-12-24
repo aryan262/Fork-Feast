@@ -17,7 +17,7 @@ export const useOrderStore = create()(persist((set)=>({
             window.location.href = response.data.session.url
             set({loading:false})
         } catch (error) {
-            toast.error(error.response.data.message)
+            // toast.error(error.response.data.message)
             set({loading:false})
         }
     },
@@ -33,6 +33,6 @@ export const useOrderStore = create()(persist((set)=>({
     }
 }),
 {
-    name:'orderName',
+    name:'order-name',
     storage:createJSONStorage(()=>localStorage)
 }))

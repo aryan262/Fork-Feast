@@ -56,7 +56,7 @@ export const createCheckOutSession = async(req, res)=>{
         return res.status(500).json({message:error.message})
     }
 }
-const stripeWebhook = async(req, res)=>{
+export const stripeWebhook = async(req, res)=>{
     let event;
 
     try {

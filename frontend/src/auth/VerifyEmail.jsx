@@ -4,19 +4,18 @@ import { useUserStore } from '@/store/useUserStore';
 import { Loader2 } from 'lucide-react';
 import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
 
 function VerifyEmail() {
     const [otp, setOtp]=useState(["", "", "", "", "", ""])
     const inputRef = useRef([]);
+    const {loading, verifyEmail} = useUserStore()
     const navigate = useNavigate();
     // const loading = false;
-    const {loading, verifyEmail} = useUserStore()
     const handleChange=(index, value)=>{
         if(/^[a-zA-Z0-9]$/.test(value) || value===""){
             const newOtp = [...otp];
             newOtp[index]=value;
-            setOtp(newOtp)
+            setOtp(newOtp);
         }
         if(value!=="" && index<5){
             inputRef.current[index+1].focus();
