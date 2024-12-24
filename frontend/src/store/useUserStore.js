@@ -57,12 +57,12 @@ export const useUserStore = create()(persist((set)=>({
             if(response.data.success){
                 // console.log(response.data);
                 toast.success(response.data.message)
-                set({loading:false})
             }
+            set({loading:false})
             // return response.data;
         } catch (error) {
-            toast.error(error.response.data.message)
             set({loading:false})
+            toast.error(error.response.data.message)
         }
     },
     checkAuthentication:async()=>{       
