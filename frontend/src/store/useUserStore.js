@@ -25,7 +25,7 @@ export const useUserStore = create()(persist((set) => ({
             }
         } catch (error) {
             toast.error(error.response.data.message)
-            set({ formLoading: false })
+            set({ loading: false })
         }
     },
     login: async (input) => {
