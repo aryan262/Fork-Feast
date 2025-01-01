@@ -32,7 +32,7 @@ export const createRestaurant = async(req, res)=>{
 }
 export const getRestaurant = async(req, res)=>{
     try {
-        const restaurant = await Restaurant.findOne({user:req.id});
+        const restaurant = await Restaurant.findOne({user:req.id}).populate('menus');
         if(!restaurant){
             return res.status(404).json({success:false, restaurant:[], message:"No Restaurant found"})
         }
@@ -45,7 +45,7 @@ export const getRestaurant = async(req, res)=>{
 
 export const updateRestaurant = async(req, res)=>{
     try {
-        const {restaurantName, city, country, price, deliveryTime, cuisines} = req.body;
+        const {restaurantName, city, country, deliveryTime, cuisines} = req.body;
         const restaurant = await Restaurant.findOne({user:req.id});
         if(!restaurant){
             return res.status(404).json({success:false, message:"No Restaurant found"})
@@ -55,7 +55,6 @@ export const updateRestaurant = async(req, res)=>{
         restaurant.country = country;
         restaurant.deliveryTime = deliveryTime;
         restaurant.cuisines = JSON.parse(cuisines)
-        restaurant.price = price;
         if(file){
             const imageUrl = await uploadImageOnCloudinary(file);
             restaurant.imageUrl = imageUrl;
@@ -102,7 +101,7 @@ export const searchRestaurant = async(req, res)=>{
     try {
         const searchText = req.params.searchText || "";
         const searchQuery = req.query.searchQuery || "";
-        const selectedCuisines = (req.query.selectedCuisines || "").split(", ").filter(cuisine => cuisine);
+        const selectedCuisines = (req.query.selectedCuisines || "").split(",").filter(cuisine => cuisine);
         const query = {};
         if(searchText){
             query.$or = [

@@ -2,6 +2,7 @@ import { User } from "../models/user.model.js";
 import bcrypt from "bcryptjs"
 import cloudinary from "../utils/cloudinary.js";
 import { generateVerificationCode } from "../utils/generateOtp.js";
+import crypto from 'crypto'
 import { generateToken } from "../utils/generateToken.js";
 import { sendPasswordResetEmail, sendResetSuccessEmail, sendVerificationEmail, sendWelcomeEmail } from "../email/email.js";
 export const signup = async(req, res)=>{
@@ -140,7 +141,7 @@ export const resetPassword = async (req, res) => {
 export const checkAuth = async(req, res)=>{
     try {
         const userId = req.id;
-        const user = await User.findById(userId);
+        const user = await User.findById(userId).select("-password");;
         if(!user){
             return res.status(404).json({success:false,message:"User not found"})
         }

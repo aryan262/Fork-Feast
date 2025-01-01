@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button'
 import Login from './auth/Login'
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import Signup from './auth/Signup'
@@ -38,7 +37,7 @@ const AuthenticatedUser = ({children})=>{
   if(isAuthenticated && user?.isVerified){
     return <Navigate to="/" replace />
   }
-  return children
+  return children;
 }
 
 const AdminRoute = ({children})=>{
@@ -117,7 +116,7 @@ const appRouter = createBrowserRouter([
   },
 ])
 function App() {
-  const {initializeTheme} = useThemeStore()
+  const initializeTheme = useThemeStore((state) => state.initializeTheme);
   const {checkAuthentication, isCheckingAuth} = useUserStore();
 
   useEffect(()=>{

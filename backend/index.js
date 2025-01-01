@@ -16,7 +16,14 @@ const port = process.env.PORT || 3000
 app.use(express.urlencoded({extended:true, limit:'10mb'}));
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin:"*", credentials:true}))
+const corsOptions = {
+    origin: [
+        "http://localhost:5173",
+        "https://forkfeast.vercel.app"
+    ],
+    credentials: true
+}
+app.use(cors(corsOptions));
 
 app.use("/api/user", userRoutes)
 app.use("/api/restaurant", restaurantRoutes)
