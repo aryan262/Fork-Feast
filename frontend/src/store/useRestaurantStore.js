@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-const API_END_POINT = "https://forkfeastbackend.vercel.app/api/v1/restaurant";
+const API_END_POINT = "http://localhost:3000/api/v1/restaurant";
 axios.defaults.withCredentials = true;
 
 
@@ -70,7 +70,7 @@ export const useRestaurantStore = create()(persist((set, get) => ({
             params.set("searchQuery", searchQuery);
             params.set("selectedCuisines", selectedCuisines.join(","));
 
-            // await new Promise((resolve) => setTimeout(resolve, 2000));
+            
             const response = await axios.get(`${API_END_POINT}/search/${searchText}?${params.toString()}`);
             if (response.data.success) {
                 set({ loading: false, searchedRestaurant: response.data });
@@ -96,7 +96,7 @@ export const useRestaurantStore = create()(persist((set, get) => ({
                     }
                 }
             }
-            // if state.restaruant is undefined then return state
+            
             return state;
         })
     },

@@ -64,7 +64,6 @@ export const login = async (req, res) => {
         user.lastLogin = new Date();
         await user.save();
 
-        // send user without passowrd
         const userWithoutPassword = await User.findOne({ email }).select("-password");
         return res.status(200).json({
             success: true,
@@ -93,7 +92,6 @@ export const verifyEmail = async (req, res) => {
         user.verificationTokenExpiresAt = undefined
         await user.save();
 
-        // send welcome email
         await sendWelcomeEmail(user.email, user.fullname);
 
         return res.status(200).json({
@@ -130,13 +128,12 @@ export const forgotPassword = async (req, res) => {
         }
 
         const resetToken = crypto.randomBytes(40).toString('hex');
-        const resetTokenExpiresAt = new Date(Date.now() + 1 * 60 * 60 * 1000); // 1 hour
+        const resetTokenExpiresAt = new Date(Date.now() + 1 * 60 * 60 * 1000);
 
         user.resetPasswordToken = resetToken;
         user.resetPasswordTokenExpiresAt = resetTokenExpiresAt;
         await user.save();
 
-        // send email
         await sendPasswordResetEmail(user.email, `${process.env.FRONTEND_URL}/resetpassword/${resetToken}`);
 
         return res.status(200).json({
@@ -159,14 +156,12 @@ export const resetPassword = async (req, res) => {
                 message: "Invalid or expired reset token"
             });
         }
-        //update password
         const hashedPassword = await bcrypt.hash(newPassword, 10);
         user.password = hashedPassword;
         user.resetPasswordToken = undefined;
         user.resetPasswordTokenExpiresAt = undefined;
         await user.save();
 
-        // send success reset email
         await sendResetSuccessEmail(user.email);
 
         return res.status(200).json({
@@ -201,7 +196,6 @@ export const updateProfile = async (req, res) => {
     try {
         const userId = req.id;
         const { fullname, email, address, city, country, profilePicture } = req.body;
-        // upload image on cloudinary
         let cloudResponse;
         cloudResponse = await cloudinary.uploader.upload(profilePicture);
         const updatedData = {fullname, email, address, city, country, profilePicture};

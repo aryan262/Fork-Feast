@@ -4,7 +4,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 export const useThemeStore = create()(
   persist(
     (set) => ({
-      theme: "light", // Default theme
+      theme: "light", 
       setTheme: (theme) => {
         const root = window.document.documentElement;
         root.classList.remove("light", "dark");
@@ -21,7 +21,7 @@ export const useThemeStore = create()(
           const storedTheme = localStorage.getItem("vite-ui-theme") ;
           const themeToApply = storedTheme;
 
-          // Apply the theme to the HTML root element
+          
           const root = window.document.documentElement;
           root.classList.remove("light", "dark");
           root.classList.add(themeToApply);
@@ -31,8 +31,8 @@ export const useThemeStore = create()(
       },
     }),
     {
-      name: "theme-store", // Name of the storage key
-      storage: createJSONStorage(() => localStorage), // Use localStorage for persistence
+      name: "theme-store",
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );

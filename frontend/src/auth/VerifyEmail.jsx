@@ -16,7 +16,7 @@ const VerifyEmail = () => {
       newOtp[index] = value;
       setOtp(newOtp);
     }
-    // Move to the next input field id a digit is entered
+    
     if (value !== "" && index < 5) {
       inputRef.current[index + 1].focus();
     }

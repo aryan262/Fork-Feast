@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 import { Checkbox } from "./ui/checkbox";
 import { Label } from "./ui/label";
 
-// agar applied filter k andr ye item exixt krta hia toh iska mtlb checked hai
+
 const filterOptions = [
   { id: "burger", label: "Burger" },
   { id: "thali", label: "Thali" },

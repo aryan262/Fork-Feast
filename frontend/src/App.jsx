@@ -85,7 +85,7 @@ const appRouter = createBrowserRouter([
         path: "/order/status",
         element: <Success />,
       },
-      // admin services start from here
+      
       {
         path: "/admin/restaurant",
         element:<AdminRoute><Restaurant /></AdminRoute>,
@@ -125,7 +125,7 @@ const appRouter = createBrowserRouter([
 function App() {
   const initializeTheme = useThemeStore((state) => state.initializeTheme);
   const {checkAuthentication, isCheckingAuth} = useUserStore();
-  // checking auth every time when page is loaded
+  
   useEffect(()=>{
     checkAuthentication();
     initializeTheme();

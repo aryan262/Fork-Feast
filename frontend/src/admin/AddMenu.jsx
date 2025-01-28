@@ -45,7 +45,7 @@ const AddMenu = () => {
       setError(fieldErrors);
       return;
     }
-    // api ka kaam start from here
+    
     try {
       const formData = new FormData();
       formData.append("name", input.name);

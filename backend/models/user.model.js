@@ -34,7 +34,6 @@ const userSchema = new mongoose.Schema({
         default:"",
     },
     admin:{type:Boolean, default:false},
-    // advanced authentication
     lastLogin:{
         type:Date,
         default:Date.now

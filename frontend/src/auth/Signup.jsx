@@ -7,7 +7,6 @@ import { Loader2, LockKeyhole, Mail, PhoneOutgoing, User } from "lucide-react";
 import {useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-// typescript me type define krne ka 2 trika hota hai
 
 const Signup = () => {
     const [input, setInput] = useState({
@@ -25,14 +24,12 @@ const navigate = useNavigate();
     }
     const loginSubmitHandler = async (e) => {
         e.preventDefault();
-        // form validation check start
         const result = userSignupSchema.safeParse(input);
         if(!result.success){
             const fieldErrors = result.error.formErrors.fieldErrors;
             setErrors(fieldErrors);
             return;
         }
-        // login api implementation start here
         try {
           await signup(input);
           navigate("/verify-email");

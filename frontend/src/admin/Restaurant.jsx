@@ -40,7 +40,7 @@ const Restaurant = () => {
       setErrors(fieldErrors);
       return;
     }
-    // add restaurant api implementation start from here
+    
     try {
       const formData = new FormData();
       formData.append("restaurantName", input.restaurantName);
@@ -54,10 +54,8 @@ const Restaurant = () => {
       }
 
       if (restaurant) {
-        // update
         await updateRestaurant(formData);
       } else {
-        // create
         await createRestaurant(formData);
       }
     } catch (error) {
@@ -82,7 +80,6 @@ const Restaurant = () => {
       };
       }
     fetchRestaurant();
-    console.log(restaurant);
     
   }, []);
 
