@@ -1,25 +1,25 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
+
 const userSchema = new mongoose.Schema({
-    fullName: {
+    fullname: {
         type: String,
         required: true
     },
     email: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     password: {
         type: String,
         required: true
     },
-    contact:{
-        type:String,
-        required:true
+    contact: {
+        type: Number,
+        required: true
     },
-    address:{
-        type:String,
-        default:"Update your address"
+    address: {
+        type: String,
+        default: "Update your address"
     },
     city:{
         type:String,
@@ -31,15 +31,13 @@ const userSchema = new mongoose.Schema({
     },
     profilePicture:{
         type:String,
-        default:""
+        default:"",
     },
-    admin:{
-        type:Boolean,
-        default:false
-    },
+    admin:{type:Boolean, default:false},
+    // advanced authentication
     lastLogin:{
         type:Date,
-        default:Date.now()
+        default:Date.now
     },
     isVerified:{
         type:Boolean,
@@ -49,6 +47,6 @@ const userSchema = new mongoose.Schema({
     resetPasswordTokenExpiresAt:Date,
     verificationToken:String,
     verificationTokenExpiresAt:Date,
-}, {timestamps:true});
+},{timestamps:true});
 
 export const User = mongoose.model("User", userSchema);

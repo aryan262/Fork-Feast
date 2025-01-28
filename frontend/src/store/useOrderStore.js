@@ -1,38 +1,38 @@
-import { create } from 'zustand'
-import axios from 'axios';
-import {createJSONStorage, persist} from 'zustand/middleware'
-const API_ENDPOINT = 'https://forkfeastbackend.vercel.app/api/order'
+import axios from "axios";
+import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
+
+const API_END_POINT = "http://localhost:3000/api/v1/order";
 axios.defaults.withCredentials = true;
-export const useOrderStore = create()(persist((set)=>({
-    loading:false,
-    orders:[],
-    createCheckoutSession:async(checkOutSession)=>{
+
+export const useOrderStore = create()(persist((set => ({
+    loading: false,
+    orders: [],
+    createCheckoutSession: async (checkoutSession) => {
         try {
-            set({loading:true})
-            const response = await axios.post(`${API_ENDPOINT}/checkout/createCheckoutSession`, checkOutSession, {
-                headers:{
-                    'Content-Type':'application/json'
+            set({ loading: true });
+            const response = await axios.post(`${API_END_POINT}/checkout/create-checkout-session`, checkoutSession, {
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-            })
-            window.location.href = response.data.session.url
-            set({loading:false})
+            });
+            window.location.href = response.data.session.url;
+            set({ loading: false });
         } catch (error) {
-            // toast.error(error.response.data.message)
-            set({loading:false})
+            set({ loading: false });
         }
     },
-    getOrderDetails:async()=>{
+    getOrderDetails: async () => {
         try {
-            set({loading:true})
-            const response = await axios.get(`${API_ENDPOINT}/`)
-            set({loading:false, orders:response.data.orders})
+            set({loading:true});
+            const response = await axios.get(`${API_END_POINT}/`);
+          
+            set({loading:false, orders:response.data.orders});
         } catch (error) {
-            toast.error(error.response.data.message)
-            set({loading:false})
+            set({loading:false});
         }
     }
-}),
-{
-    name:'order-name',
-    storage:createJSONStorage(()=>localStorage)
+})), {
+    name: 'order-name',
+    storage: createJSONStorage(() => localStorage)
 }))

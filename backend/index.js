@@ -1,19 +1,21 @@
-import express from "express"
-import dotenv from "dotenv"
-import connectDB from "./config/db.js";
-// import bodyParser from 'body-parser'
+import express from "express";
+import dotenv from "dotenv";
+import connectDB from "./db/connectDB.js";
+import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
-import cors from 'cors'
-import userRoutes from './routes/user.routes.js'
-import restaurantRoutes from './routes/restaurant.routes.js'
-import menuRoutes from './routes/menu.routes.js'
-import orderRoutes from './routes/order.routes.js'
+import cors from "cors";
+import userRoute from "./routes/user.route.js";
+import restaurantRoute from "./routes/restaurant.route.js";
+import menuRoute from "./routes/menu.route.js";
+import orderRoute from "./routes/order.route.js";
 dotenv.config();
-const app = express();
-const port = process.env.PORT || 3000
 
-// app.use(bodyParser.json({limit:'10mb'}));
-app.use(express.urlencoded({extended:true, limit:'10mb'}));
+const app = express();
+
+const PORT = process.env.PORT || 3000;
+
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(express.json());
 app.use(cookieParser());
 const corsOptions = {
@@ -25,15 +27,12 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
-app.use("/api/user", userRoutes)
-app.use("/api/restaurant", restaurantRoutes)
-app.use("/api/menu", menuRoutes)
-app.use("/api/order", orderRoutes)
-app.use("/", (req, res)=>{
-    res.send("Hello from server");
-})
+app.use("/api/v1/user", userRoute);
+app.use("/api/v1/restaurant", restaurantRoute);
+app.use("/api/v1/menu", menuRoute);
+app.use("/api/v1/order", orderRoute);
 
-connectDB();
-app.listen(port, ()=>{
-    console.log(`Server is running on port ${port}`);
-})
+app.listen(PORT, () => {
+    connectDB();
+    console.log(`Server listen at port ${PORT}`);
+});

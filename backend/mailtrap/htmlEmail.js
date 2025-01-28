@@ -190,7 +190,7 @@ export const generatePasswordResetEmailHtml = (resetURL) => {
               <p>Thank you,<br/>The Fork&Feast Team</p>
             </div>
             <div class="email-footer">
-              <p>&copy; 2024 For&Feast. All rights reserved.</p>
+              <p>&copy; 2024 Fork&Feast. All rights reserved.</p>
             </div>
           </div>
         </body>

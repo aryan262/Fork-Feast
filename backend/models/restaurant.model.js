@@ -1,4 +1,5 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
+
 const restaurantSchema = new mongoose.Schema({
     user:{
         type:mongoose.Schema.Types.ObjectId,
@@ -7,35 +8,25 @@ const restaurantSchema = new mongoose.Schema({
     },
     restaurantName:{
         type:String,
-        requred:true
+        required:true
     },
     city:{
         type:String,
-        requred:true
+        required:true
     },
     country:{
         type:String,
-        requred:true
+        required:true
     },
     deliveryTime:{
         type:Number,
-        requred:true
+        required:true
     },
-    cuisines:[
-        {
-            type:String,
-            required:true
-        }
-    ],
-    menus:[
-        {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'Menu'
-        }
-    ],
+    cuisines:[{type:String, required:true}],
+    menus:[{type:mongoose.Schema.Types.ObjectId, ref:'Menu'}],
     imageUrl:{
         type:String,
         required:true
     }
-}, {timestamps:true})
+},{timestamps:true});
 export const Restaurant = mongoose.model("Restaurant", restaurantSchema);
