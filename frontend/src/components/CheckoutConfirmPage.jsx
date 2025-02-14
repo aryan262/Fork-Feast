@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -37,7 +37,6 @@ const CheckoutConfirmPage = ({
   };
   const checkoutHandler = async (e) => {
     e.preventDefault();
-    
     try {
       const checkoutData = {
         cartItems: cart.map((cartItem) => ({

@@ -8,13 +8,11 @@ export const useCartStore = create()(persist((set) => ({
         set((state) => {
             const exisitingItem = state.cart.find((cartItem) => cartItem._id === item._id);
             if (exisitingItem) {
-                
                 return {
                     cart: state?.cart.map((cartItem) => cartItem._id === item._id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
                     )
                 };
             } else {
-                
                 return {
                     cart: [...state.cart, { ...item, quantity: 1 }]
                 }

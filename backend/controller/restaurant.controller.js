@@ -21,7 +21,7 @@ export const createRestaurant = async (req, res) => {
                 message: "Image is required"
             })
         }
-        const imageUrl = await uploadImageOnCloudinary(file );
+        const imageUrl = await uploadImageOnCloudinary(file);
         await Restaurant.create({
             user: req.id,
             restaurantName,
@@ -137,6 +137,7 @@ export const searchRestaurant = async (req, res) => {
         const searchQuery = req.query.searchQuery || "";
         const selectedCuisines = (req.query.selectedCuisines || "").split(",").filter(cuisine => cuisine);
         const query = {};
+        console.log(selectedCuisines);
         
         if (searchText) {
             query.$or = [

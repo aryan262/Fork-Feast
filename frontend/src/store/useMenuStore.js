@@ -7,8 +7,6 @@ import { useRestaurantStore } from "./useRestaurantStore";
 const API_END_POINT = "http://localhost:3000/api/v1/menu";
 axios.defaults.withCredentials = true;
 
-
-
 export const useMenuStore = create()(persist((set) => ({
     loading: false,
     menu: null,
@@ -24,7 +22,6 @@ export const useMenuStore = create()(persist((set) => ({
                 toast.success(response.data.message);
                 set({ loading: false, menu: response.data.menu });
             }
-            
             useRestaurantStore.getState().addMenuToRestaurant(response.data.menu);
         } catch (error) {
             toast.error(error.response.data.message);
@@ -43,7 +40,6 @@ export const useMenuStore = create()(persist((set) => ({
              toast.success(response.data.message);
              set({loading:false, menu:response.data.menu});
             }
-            
             useRestaurantStore.getState().updateMenuToRestaurant(response.data.menu);
         } catch (error) {
             toast.error(error.response.data.message);

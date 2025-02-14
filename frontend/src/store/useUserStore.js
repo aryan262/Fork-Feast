@@ -5,8 +5,6 @@ import { toast } from "sonner";
 
 const API_END_POINT = "http://localhost:3000/api/v1/user"
 axios.defaults.withCredentials = true;
-
-
 export const useUserStore = create()(persist((set) => ({
     user: null,
     isAuthenticated: false,

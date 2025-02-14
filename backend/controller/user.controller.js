@@ -128,7 +128,7 @@ export const forgotPassword = async (req, res) => {
         }
 
         const resetToken = crypto.randomBytes(40).toString('hex');
-        const resetTokenExpiresAt = new Date(Date.now() + 1 * 60 * 60 * 1000);
+        const resetTokenExpiresAt = new Date(Date.now() + 1 * 60 * 60 * 1000); 
 
         user.resetPasswordToken = resetToken;
         user.resetPasswordTokenExpiresAt = resetTokenExpiresAt;
@@ -196,6 +196,7 @@ export const updateProfile = async (req, res) => {
     try {
         const userId = req.id;
         const { fullname, email, address, city, country, profilePicture } = req.body;
+
         let cloudResponse;
         cloudResponse = await cloudinary.uploader.upload(profilePicture);
         const updatedData = {fullname, email, address, city, country, profilePicture};

@@ -4,6 +4,7 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+
 export const getOrders = async (req, res) => {
     try {
         const orders = await Order.find({ user: req.id }).populate('user').populate('restaurant');
@@ -110,6 +111,7 @@ export const stripeWebhook = async (req, res) => {
 };
 
 export const createLineItems = (checkoutSessionRequest, menuItems) => {
+
     const lineItems = checkoutSessionRequest.cartItems.map((cartItem) => {
         const menuItem = menuItems.find((item) => item._id.toString() === cartItem.menuId);
         if (!menuItem) throw new Error(`Menu item id not found`);

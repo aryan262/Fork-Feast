@@ -52,7 +52,7 @@ export const editMenu = async (req, res) => {
         if(price) menu.price = price;
 
         if(file){
-            const imageUrl = await uploadImageOnCloudinary(filee);
+            const imageUrl = await uploadImageOnCloudinary(file);
             menu.image = imageUrl;
         }
         await menu.save();
