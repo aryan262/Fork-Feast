@@ -94,7 +94,7 @@ const Profile = () => {
         <div className="flex items-center gap-4 rounded-sm p-2 bg-gray-200">
           <Mail className="text-gray-500" />
           <div className="w-full">
-            <Label>Email</Label>
+            <Label className="dark:text-black">Email</Label>
             <input
             disabled
               name="email"
@@ -107,7 +107,7 @@ const Profile = () => {
         <div className="flex items-center gap-4 rounded-sm p-2 bg-gray-200">
           <LocateIcon className="text-gray-500" />
           <div className="w-full">
-            <Label>Address</Label>
+            <Label className="dark:text-black">Address</Label>
             <input
               name="address"
               value={profileData.address}
@@ -119,7 +119,7 @@ const Profile = () => {
         <div className="flex items-center gap-4 rounded-sm p-2 bg-gray-200">
           <MapPin className="text-gray-500" />
           <div className="w-full">
-            <Label>City</Label>
+            <Label className="dark:text-black">City</Label>
             <input
               name="city"
               value={profileData.city}
@@ -131,7 +131,7 @@ const Profile = () => {
         <div className="flex items-center gap-4 rounded-sm p-2 bg-gray-200">
           <MapPinnedIcon className="text-gray-500" />
           <div className="w-full">
-            <Label>Country</Label>
+            <Label className="dark:text-black">Country</Label>
             <input
               name="country"
               value={profileData.country}

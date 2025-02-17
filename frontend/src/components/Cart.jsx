@@ -16,7 +16,7 @@ import { useCartStore } from "@/store/useCartStore";
 
 const Cart = () => {
   const [open, setOpen] = useState(false);
-  const { cart, decrementQuantity, incrementQuantity } = useCartStore();
+  const { cart, decrementQuantity, incrementQuantity, clearCart, removeFromTheCart } = useCartStore();
 
   let totalAmount = cart.reduce((acc, ele) => {
     return acc + ele.price * ele.quantity;
@@ -24,7 +24,7 @@ const Cart = () => {
   return (
     <div className="flex flex-col max-w-7xl mx-auto my-10">
       <div className="flex justify-end">
-        <Button variant="link">Clear All</Button>
+        <Button onClick={()=>{clearCart()}} variant="link">Clear All</Button>
       </div>
       <Table>
         <TableHeader>
@@ -54,7 +54,7 @@ const Cart = () => {
                   onClick={() => decrementQuantity(item._id)}
                     size={"icon"}
                     variant={"outline"}
-                    className="rounded-full bg-gray-200"
+                    className="rounded-full bg-gray-200 dark:bg-slate-800 hover:bg-gray-900"
                   >
                     <Minus />
                   </Button>
@@ -78,7 +78,7 @@ const Cart = () => {
               </TableCell>
               <TableCell>{item.price * item.quantity}</TableCell>
               <TableCell className="text-right">
-                <Button size={"sm"} className="bg-orange hover:bg-hoverOrange">
+                <Button onClick={()=>{removeFromTheCart(item._id)}} size={"sm"} className="bg-orange hover:bg-hoverOrange">
                   Remove
                 </Button>
               </TableCell>
