@@ -76,12 +76,17 @@ const SearchPage = () => {
                 )}
               </div>
             </div>
-            {/* Restaurant Cards  */}
-            <div className="grid md:grid-cols-3 gap-4">
+            <div
+              className={`grid md:grid-cols-3 gap-4 ${
+                !loading && searchedRestaurant?.data.length === 0 ? "flex justify-center items-center" : ""
+              }`}
+            >
               {loading ? (
                 <SearchPageSkeleton />
               ) : !loading && searchedRestaurant?.data.length === 0 ? (
-                <NoResultFound searchText={params.text} />
+                <div className="col-span-3 flex justify-center">
+                  <NoResultFound searchText={params.text} />
+                </div>
               ) : (
                 searchedRestaurant?.data.map((restaurant) => (
                   <Card
@@ -117,22 +122,18 @@ const SearchPage = () => {
                         <Globe size={16} />
                         <p className="text-sm">
                           Country:{" "}
-                          <span className="font-medium">
-                            {restaurant.country}
-                          </span>
+                          <span className="font-medium">{restaurant.country}</span>
                         </p>
                       </div>
                       <div className="flex gap-2 mt-4 flex-wrap">
-                        {restaurant.cuisines.map(
-                          (cuisine, idx) => (
-                            <Badge
-                              key={idx}
-                              className="font-medium px-2 py-1 rounded-full shadow-sm"
-                            >
-                              {cuisine}
-                            </Badge>
-                          )
-                        )}
+                        {restaurant.cuisines.map((cuisine, idx) => (
+                          <Badge
+                            key={idx}
+                            className="font-medium px-2 py-1 rounded-full shadow-sm"
+                          >
+                            {cuisine}
+                          </Badge>
+                        ))}
                       </div>
                     </CardContent>
                     <CardFooter className="p-4 border-t dark:border-t-gray-700 border-t-gray-100 text-white flex justify-end">
@@ -146,6 +147,7 @@ const SearchPage = () => {
                 ))
               )}
             </div>
+
           </div>
         </div>
       </div>
